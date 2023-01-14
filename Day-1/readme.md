@@ -1,6 +1,5 @@
 # kubernetes Day1 Lab2
 
-
 ### 1. Create a ReplicaSet using the below yaml
 
 ```yaml
