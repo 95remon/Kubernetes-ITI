@@ -67,30 +67,34 @@
     k create rolebinding cronjob-rolebinding --role cronjob-role --serviceaccount my-ns:cronjob-sa -n my-ns
     ```
 4. Create a CronJob that lists the endpoints in that namespace every minute and paste the output for the      first pod created.
-   
-    ```yaml
-    apiVersion: batch/v1
-    kind: CronJob
-    metadata:
-      name: kubectl
-      namespace: my-ns
-    spec:
-      schedule: "* * * * *"
-      jobTemplate:
-        spec:
-          template:
-            spec:
-              serviceAccountName: cronjob-sa
-              containers:
-              - name: kubectl-container
-                image: bitnami/kubectl
-                imagePullPolicy: IfNotPresent
-                command:
-                - kubectl
-                - get
-                - endpoints
-              restartPolicy: OnFailure
-    ```
+     - create cronejob.yaml file 
+       ```yaml
+       apiVersion: batch/v1
+       kind: CronJob
+       metadata:
+         name: kubectl
+         namespace: my-ns
+       spec:
+         schedule: "* * * * *"
+         jobTemplate:
+           spec:
+             template:
+               spec:
+                 serviceAccountName: cronjob-sa
+                 containers:
+                 - name: kubectl-container
+                   image: bitnami/kubectl
+                   imagePullPolicy: IfNotPresent
+                   command:
+                   - kubectl
+                   - get
+                   - endpoints
+                 restartPolicy: OnFailure
+       ```
+     - apply file
+       ```bash
+       k apply -f cronjob.yaml
+       ```
 5. After listing try to delete the 3 nginx pods ? again try to view the logs for the newly created pod for that cronJob what do you think happened ?
       - first show the logs before delete
        ![alt](images/before-delete.png)
