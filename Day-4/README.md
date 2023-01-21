@@ -128,13 +128,13 @@
     ![alt](images/33.png)
 ---
 5. What is the state of the Persistent Volume Claim? 
-   Pending
+   - Pending
 ---
 6. What is the state of the Persistent Volume?
-   Available
+   - Available
 ---
 7. Why is the claim not bound to the available Persistent Volume?
-   Access modes are different from each other in PV is ReadWriteMany and in PVC is ReadWriteOnce
+   - Access modes are different from each other in PV is ReadWriteMany and in PVC is ReadWriteOnce
 ---
 8. Update the Access Mode on the claim to bind it to the PV?
     - Modify PV file
