@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-service
+  annotations:
+    kubernetes.io/ingress.class: webapp-service
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: webapp-service.local
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: webapp-service
+            port: 
+              number: 8080

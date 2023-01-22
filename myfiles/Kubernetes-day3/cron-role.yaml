@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: cronjob-role
+  namespace: my-ns
+rules:          # Authorization rules for this role
+  - apiGroups:  # 1st API group
+      - ''      # An empty string designates the core API group.
+    resources:
+      - endpoints
+      - services
+      - pods
+    verbs:
+      - get
+      - list
+      - watch

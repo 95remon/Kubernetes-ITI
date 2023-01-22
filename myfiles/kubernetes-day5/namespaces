@@ -1,0 +1,8 @@
+NAME                 STATUS   AGE
+default              Active   2d20h
+ingress-nginx        Active   2d20h
+kube-node-lease      Active   2d20h
+kube-public          Active   2d20h
+kube-system          Active   2d20h
+local-path-storage   Active   2d20h
+my-ns                Active   2d16h

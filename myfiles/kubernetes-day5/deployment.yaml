@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-earthflower
+  namespace: earth
+  labels:
+    app: httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: claim
+      containers:
+      - name: httpd
+        image: httpd:2.4.41-alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /tmp/project-data
+          name: pv-storage
+          

@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kubectl
+  namespace: my-ns
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: cronjob-sa
+          containers:
+          - name: kubectl-container
+            image: bitnami/kubectl
+            imagePullPolicy: IfNotPresent
+            command:
+            - kubectl
+            - get
+            - endpoints
+          restartPolicy: OnFailure
